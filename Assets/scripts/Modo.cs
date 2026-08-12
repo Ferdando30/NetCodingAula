@@ -3,10 +3,12 @@ using TMPro;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Modo : MonoBehaviour
 {
+    private string Qual;
     [SerializeField]
     TMP_InputField ip, port;
 
@@ -19,6 +21,25 @@ public class Modo : MonoBehaviour
             ip.text = PlayerPrefs.GetString("ip");
         if(PlayerPrefs.HasKey("port"))
             port.text=PlayerPrefs.GetString("port");
+
+ 
+    }
+
+   void Update()
+    {
+        Scene targetScene = SceneManager.GetSceneByName("Playground");
+        if (targetScene.isLoaded)
+        {
+            if(Qual == "Host")
+            {
+                NetworkManager.Singleton.StartHost();
+            }
+            else if (Qual == "Client")
+            {
+                NetworkManager.Singleton.StartClient();
+
+            }
+        }
     }
 
     public void Server()
@@ -30,17 +51,19 @@ public class Modo : MonoBehaviour
     }
     public void Host()
     {
+
         UnityTransport transport = NetworkManager.Singleton.GetComponent<UnityTransport>();
         transport.SetConnectionData("127.0.0.1", ushort.Parse(port.text), "0.0.0.0");
-        NetworkManager.Singleton.StartHost();
         GravarPreferencias();
+        Qual = "Host";
     }
     public void Client()
     {
         UnityTransport transport = NetworkManager.Singleton.GetComponent<UnityTransport>();
         transport.SetConnectionData(ip.text, ushort.Parse(port.text));
-        NetworkManager.Singleton.StartClient();
+        //NetworkManager.Singleton.StartClient();
         GravarPreferencias();
+        Qual = "Client";
     }
 
     void GravarPreferencias()

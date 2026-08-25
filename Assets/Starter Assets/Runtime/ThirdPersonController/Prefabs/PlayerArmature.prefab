@@ -1041,6 +1041,7 @@ GameObject:
   - component: {fileID: 3141674120843923617}
   - component: {fileID: -2318357801761411270}
   - component: {fileID: 2907252173806856990}
+  - component: {fileID: 8291959326929499783}
   m_Layer: 8
   m_Name: PlayerArmature
   m_TagString: Player
@@ -1420,6 +1421,19 @@ MonoBehaviour:
       Synchronize: 1
       ParameterType: 1
   AnimatorParametersExpanded: 0
+--- !u!114 &8291959326929499783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4416926081852918481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b0abdfe0d0251478c9625548390c63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.StarterAssets::SpawnCube
+  cube: {fileID: 3887841506378265697, guid: 27ed5cac68a527545b37d60e8f4c4e84, type: 3}
 --- !u!1 &4523139366846529165
 GameObject:
   m_ObjectHideFlags: 0

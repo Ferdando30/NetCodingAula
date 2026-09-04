@@ -2,7 +2,7 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class GetCrystal : MonoBehaviour
+public class GetCrystal : NetworkBehaviour
 {
     private int Pontos;
 
@@ -17,7 +17,8 @@ public class GetCrystal : MonoBehaviour
         destroyCrystal = inputSystemActions.Player.PickUpCrystal;
 
         Pontos = 0;
-        print(Pontos);
+        string nomePlayer = $"Player {OwnerClientId + 1}";
+        print($"{nomePlayer}: {Pontos}");
     }
 
     private void OnEnable()
@@ -30,18 +31,27 @@ public class GetCrystal : MonoBehaviour
         destroyCrystal.Disable();
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+   
 
     // Update is called once per frame
     void Update()
     {
+        if (!IsOwner)
+        {
+            return;
+        }
+
         if (cristalAtual != null && destroyCrystal.WasPressedThisFrame())
         {
-            PegarCristal();
+            NetworkObject networkObjectCristal =
+                cristalAtual.GetComponent<NetworkObject>();
+
+            if (networkObjectCristal != null)
+            {
+                PegarCristalRpc(
+                    new NetworkObjectReference(networkObjectCristal)
+                );
+            }
         }
     }
 
@@ -58,12 +68,15 @@ public class GetCrystal : MonoBehaviour
     }
 
     [Rpc(SendTo.Server)]
-    public void PegarCristal()
+    public void PegarCristalRpc(NetworkObjectReference cristalReference)
     {
-        Destroy(cristalAtual);
-        cristalAtual = null;
+        if (!cristalReference.TryGet(out NetworkObject cristal))
+            return;
+
+        cristal.Despawn(true);
 
         Pontos++;
-        print(Pontos);
+        string nomePlayer = $"Player {OwnerClientId + 1}";
+        print($"{nomePlayer}: {Pontos}");
     }
 }

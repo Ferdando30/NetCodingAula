@@ -51,12 +51,12 @@ public class Modo : MonoBehaviour
     }
     public void Host()
     {
-
         UnityTransport transport = NetworkManager.Singleton.GetComponent<UnityTransport>();
         transport.SetConnectionData("127.0.0.1", ushort.Parse(port.text), "0.0.0.0");
         GravarPreferencias();
         Qual = "Host";
     }
+
     public void Client()
     {
         UnityTransport transport = NetworkManager.Singleton.GetComponent<UnityTransport>();

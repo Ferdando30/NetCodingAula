@@ -201,7 +201,7 @@ public class PlayerColors : NetworkBehaviour
 
     private void Update()
     {
-        Debug.Log("update rolando");
+       // Debug.Log("update rolando");
 
         // Somente o dono deste Player deve responder
         // aos comandos locais de teclado.

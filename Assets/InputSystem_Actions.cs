@@ -181,6 +181,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PickUpCrystal"",
+                    ""type"": ""Button"",
+                    ""id"": ""c9d52fc9-ca85-49ba-860c-99c54ad410a5"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -577,6 +586,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Color"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""00163fff-0225-48c1-b56a-f9bcd398f543"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PickUpCrystal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1174,6 +1194,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_Next = m_Player.FindAction("Next", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_Color = m_Player.FindAction("Color", throwIfNotFound: true);
+        m_Player_PickUpCrystal = m_Player.FindAction("PickUpCrystal", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1277,6 +1298,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Next;
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_Color;
+    private readonly InputAction m_Player_PickUpCrystal;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1328,6 +1350,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Color".
         /// </summary>
         public InputAction @Color => m_Wrapper.m_Player_Color;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/PickUpCrystal".
+        /// </summary>
+        public InputAction @PickUpCrystal => m_Wrapper.m_Player_PickUpCrystal;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1384,6 +1410,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Color.started += instance.OnColor;
             @Color.performed += instance.OnColor;
             @Color.canceled += instance.OnColor;
+            @PickUpCrystal.started += instance.OnPickUpCrystal;
+            @PickUpCrystal.performed += instance.OnPickUpCrystal;
+            @PickUpCrystal.canceled += instance.OnPickUpCrystal;
         }
 
         /// <summary>
@@ -1425,6 +1454,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Color.started -= instance.OnColor;
             @Color.performed -= instance.OnColor;
             @Color.canceled -= instance.OnColor;
+            @PickUpCrystal.started -= instance.OnPickUpCrystal;
+            @PickUpCrystal.performed -= instance.OnPickUpCrystal;
+            @PickUpCrystal.canceled -= instance.OnPickUpCrystal;
         }
 
         /// <summary>
@@ -1795,6 +1827,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnColor(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "PickUpCrystal" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPickUpCrystal(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

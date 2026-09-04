@@ -1043,6 +1043,7 @@ GameObject:
   - component: {fileID: 2907252173806856990}
   - component: {fileID: 8291959326929499783}
   - component: {fileID: -3164031287081582681}
+  - component: {fileID: -7075679679722448715}
   m_Layer: 8
   m_Name: PlayerArmature
   m_TagString: Player
@@ -1452,6 +1453,18 @@ MonoBehaviour:
   playerRenderer: {fileID: 5597113867290821413}
   mainMaterialIndex: 0
   secondaryMaterialIndex: 1
+--- !u!114 &-7075679679722448715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4416926081852918481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b916b9c1797273f408a298f4f9ff00ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GetCrystal
 --- !u!1 &4523139366846529165
 GameObject:
   m_ObjectHideFlags: 0

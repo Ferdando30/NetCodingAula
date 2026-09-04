@@ -1335,7 +1335,7 @@ MonoBehaviour:
   m_CharacterController: {fileID: 4416926081852918491}
   m_ThirdPersonController: {fileID: 4416926081852918490}
   m_PlayerInput: {fileID: 4416926081852918493}
-  m_CameraFollow: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
+  m_CameraFollow: {fileID: 2070925441746177912, guid: 003f3f3248800f24bb75b0bb24fc6fd1, type: 3}
 --- !u!114 &-2318357801761411270
 MonoBehaviour:
   m_ObjectHideFlags: 0

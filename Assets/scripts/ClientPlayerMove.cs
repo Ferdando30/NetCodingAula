@@ -2,6 +2,7 @@ using Unity.Netcode;
 using StarterAssets;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Unity.Cinemachine;
 namespace NetcodeDemo
 {
     public class ClientPlayerMove : NetworkBehaviour
@@ -37,6 +38,12 @@ namespace NetcodeDemo
             m_PlayerInput.enabled = true;
             m_CharacterController.enabled = true;
             m_ThirdPersonController.enabled = true;
+
+            CinemachineCamera followCamera =
+                FindFirstObjectByType<CinemachineCamera>();
+
+            followCamera.Target.TrackingTarget =
+                m_ThirdPersonController.CinemachineCameraTarget.transform;
         }
     }
 }
